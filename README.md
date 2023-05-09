@@ -2,7 +2,7 @@
 
 ## Run the Project with Docker-Compose
 
-1. Create a .env file from .env.sample and update environment variables.
+1. Create a .env file from [`.env.sample`](./src/.env.sample) and update environment variables.
 
 ```sh
 $ cp .env.sample .env
@@ -16,7 +16,7 @@ $ docker-compose -f docker-compose.yml up -d --build
 
 ## Verify Your Environment Variables
 
-The project provides default environment settings in [`app/config.py`](./src/app/api/config.py).
+The project provides default environment settings in [`config.py`](./src/app/api/config.py).
 While you can use the default settings, [it's recommended](https://12factor.net/config) to create a `.env` file to store your settings outside of your production code. E.g.:
 
 ```config
@@ -36,19 +36,20 @@ POSTGRES_PASSWORD=database_password
 POSTGRES_DB=url-shortner
 ```
 
-To get an overview of the environment variables you can set, check the [`app/config.py`](./src/app/api/config.py) file.
+To get an overview of the environment variables you can set, check the [`config.py`](./src/app/api/config.py) file.
 
 > ☝️ **Note:** You should never add the `.env` file to your version control system. 
 
 ## Run Pytests
-Tests are in [`./src/tests`](./src/tests) folder.
+Tests are in [`tests`](./src/tests) folder.
+Run test with:
 ```
 $ cd ./src/
 $ pytest
 ```
 
 ## Run the Pressure test
-Run this test with locust command in /src/tests/pressure-test folder, for checking the presure test config, see [`./src/tests/pressure-test/locustfile.py`](./src/tests/pressure-test/locustfile.py) file.
+Run this test with locust command in /src/tests/pressure-test folder, for checking the presure test config, see [`locustfile.py`](./src/tests/pressure-test/locustfile.py) file.
 ```
 $ cd ./src/tests/pressure-test/
 $ locust
