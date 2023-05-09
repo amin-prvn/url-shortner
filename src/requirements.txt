@@ -1,0 +1,9 @@
+alembic
+asyncpg
+fastapi
+pydantic
+SQLAlchemy
+uvicorn
+validators
+pytest
+python-dotenv

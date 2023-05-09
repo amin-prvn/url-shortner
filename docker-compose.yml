@@ -1,0 +1,44 @@
+version: "3.7"
+
+services:
+
+  # Back-end service
+  backend:
+    image: url-shortner
+    depends_on:
+      - postgres
+    build: ./src
+    command: uvicorn app.main:app --reload --workers 1 --host 0.0.0.0 --port 8000
+    expose: 
+      - 8000
+    env_file:
+      - ./src/.env
+    networks:
+      - main_network
+
+  # Database postgrsql service
+  postgres:
+    image: postgres:12.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./src/.env
+    networks:
+      - main_network
+
+  # Nginx webserver
+  nginx:
+    image: nginx-url-shortner
+    build: ./nginx
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+    networks:
+      - main_network
+
+volumes:
+  postgres_data:
+networks:
+  main_network:
